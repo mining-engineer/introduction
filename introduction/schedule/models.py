@@ -42,10 +42,9 @@ class Schedules(models.Model):
 
     number = models.IntegerField(choices=ORDER_CHOICES, verbose_name=_('Номер по порядку'))
     performance = models.ForeignKey(Performances, on_delete=models.CASCADE, verbose_name=_('Выступление'))
-    solist = models.ManyToManyField(Soloists, related_name='schedules', verbose_name=_('Солисты'))
-    group = models.ManyToManyField(Group, related_name='schedules', verbose_name=_('Группы'))
-    group_2 = models.ManyToManyField(Group, related_name='schedules_2', verbose_name=_('Группы 2'))
-    is_published = models.BooleanField(default=False, verbose_name=_('Опубликовано'))
+    solist = models.ManyToManyField(Soloists, related_name='schedules', blank=True, verbose_name=_('Солисты'))
+    group = models.ManyToManyField(Group, related_name='schedules', blank=True, verbose_name=_('Группы'))
+    is_published = models.BooleanField(default=True, verbose_name=_('Опубликовано'))
 
     def __str__(self):
         return f'{self.number} - {self.performance.title}'
