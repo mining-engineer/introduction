@@ -33,3 +33,23 @@ class Performances(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Schedules(models.Model):
+    ORDER_CHOICES = [(i, str(i)) for i in range(1, 100)]  # Предопределенные значения для номера по порядку
+
+    number = models.IntegerField(choices=ORDER_CHOICES, verbose_name='Номер по порядку')
+    performance = models.ForeignKey(Performances, on_delete=models.CASCADE, verbose_name='Выступление')
+    solist = models.ForeignKey(Soloists, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Солист')
+    solist_2 = models.ForeignKey(Soloists, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Солист 2')
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Группа')
+    group_2 = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Группа 2')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
+
+    def __str__(self):
+        return f'{self.number} - {self.performance.title}'
+
+    class Meta:
+        verbose_name = 'Расписание'
+        verbose_name_plural = 'Расписания'
+        ordering = ['number']
