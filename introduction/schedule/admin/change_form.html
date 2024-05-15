@@ -1,0 +1,23 @@
+<!-- admin/schedules/change_form.html -->
+
+{% extends 'admin/change_form.html' %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .form-row > label {
+        flex: 0 0 200px;
+    }
+    .form-row > div {
+        flex: 1 0 400px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+{% endblock %}
