@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <div style="text-align: center; padding: 20px; color: white;">
+    <ol style="font-size: 24px; list-style: decimal; padding: 0;">
+      {% for artist, song in songs.items %}
+        <li style="color: white;">
+          {{ artist }} - <span style="color: gold;">{{ song }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+{% endblock %}
