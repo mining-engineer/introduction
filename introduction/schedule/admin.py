@@ -1,20 +1,23 @@
-from django.contrib import admin
-from .models import Group, Soloists, Performances, Schedules
-
+# admin.py
 
 from django.contrib import admin
-from .models import Schedules
+from .models import Schedules, Performances, Soloists, Group
+from .forms import SchedulesForm
 
 class SchedulesAdmin(admin.ModelAdmin):
-    list_display = ('number', 'performance_title', 'solist_names', 'group_names', 'is_published')
-    list_filter = ('is_published', 'performance', 'group', 'solist')
-    search_fields = ['performance__title', 'solist__name', 'group__name']
-    ordering = ['number']
-    change_form_template = 'admin/schedules/change_form.html'
+    form = SchedulesForm
+    list_display = ('number', 'performance_title_display', 'solist_names_display', 'group_names_display')
+
+    def performance_title_display(self, obj):
+        return obj.performance.title
+
+    def solist_names_display(self, obj):
+        return ', '.join(solist.name for solist in obj.solist.all())
+
+    def group_names_display(self, obj):
+        return ', '.join(group.name for group in obj.group.all())
 
 admin.site.register(Schedules, SchedulesAdmin)
-
-
 admin.site.register(Group)
 admin.site.register(Soloists)
 admin.site.register(Performances)
