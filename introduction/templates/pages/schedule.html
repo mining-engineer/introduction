@@ -1,12 +1,21 @@
+<!-- /introduction/schedule/templates/schedule/schedule_list.html -->
 {% extends "base.html" %}
 {% block content %}
   <div style="text-align: center; padding: 20px; color: white;">
-    <ol style="font-size: 24px; list-style: decimal; padding: 0;">
-      {% for artist, song in songs.items %}
+    <ul style="font-size: 1.2rem; list-style: none; padding: 0; margin: 0 auto; max-width: 100%;">
+      {% for schedule in schedules %}
         <li style="color: white;">
-          {{ artist }} - <span style="color: gold;">{{ song }}</span>
+          <span style="color: #ffd700;">{{ schedule.number }}.</span>  {{ schedule.performance.title }} 
+            {% if schedule.group.all %}
+              - 
+              <span style="color: #ffd700;">{{ schedule.group.all|join:", " }}</span>
+            {% endif %}
+            {% if schedule.solist.all %}
+              +  
+              <span style="color:  #2E8B57;">{{ schedule.solist.all|join:", " }}</span> 
+            {% endif %}
         </li>
       {% endfor %}
-    </ol>
+    </ul>
   </div>
 {% endblock %}

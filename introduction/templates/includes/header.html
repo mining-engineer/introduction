@@ -2,19 +2,32 @@
 
 {% load static %}
 
-<header>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+  <header>
     <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-auto">
-                <!-- Логотип -->
-                <img src="{% static 'img/logo.png' %}" width="75" height="75" class="d-inline-block align-top" alt="Логотип">
-            </div>
-            <div class="col-auto">
-                <!-- Текст -->
-                <h2 class="text-center text-smoothing" style="font-smoothing: antialiased; text-rendering: optimizeLegibility; color: white;">
-                    Отчётный концерт хореографического коллектива <span> Вступление</span>
-                </h2>
-            </div>
+      <div class="row align-items-center justify-content-center">
+        <div class="col-auto">
+          <!-- Логотип с мерцанием -->
+          <img src="{% static 'img/logo.png' %}" width="75" height="75" class="d-inline-block align-top logo" alt="Логотип">
         </div>
+        <div class="col-auto">
+          <!-- Текст -->
+          <h2 class="text-center text-smoothing" style="font-smoothing: antialiased; text-rendering: optimizeLegibility; color: white;">
+            Отчётный концерт хореографического коллектива <span> Вступление</span>
+          </h2>
+        </div>
+      </div>
     </div>
-</header>
+  </header>
+
+</body>
+
+</html>
